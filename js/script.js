@@ -1,6 +1,3 @@
-// Milestone 3
-// Creiamo una select con i tipi di icone e usiamola per filtrare le icone
-
 const icons = [
   {
     name: 'apple-alt',
@@ -179,8 +176,6 @@ iconCategories.forEach((item, i) => {
   });
 });
 
-console.log(icons);
-
 // 4. inietto in html
 // pulisco l'html di injectContainer
 injectContainer.html("");
@@ -189,8 +184,6 @@ icons.forEach((item) => {
 
   // destrutturo gli elementi dell'array
   let {name, family, prefix, category, color} = item;
-
-  console.log(color);
 
   // definisco codice da iniettare in html
   let htmlInject = `
@@ -203,3 +196,7 @@ icons.forEach((item) => {
   // inietto
   injectContainer.append(htmlInject);
 });
+
+
+// Milestone 3
+// Creiamo una select con i tipi di icone e usiamola per filtrare le icone
