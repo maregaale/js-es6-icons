@@ -139,13 +139,8 @@ const icons = [
 // 1. seleziono l'elemento dove iniettare nell'html
 const injectContainer = $(".icons");
 
-// 2. ciclo sull'array 'icons' e inietto in html
-icons.forEach((item) => {
-
-  injectIconInHtml(icons);
-
-});
-
+// 2. inietto in html
+injectIconInHtml(icons);
 
 // Milestone 2
 // Coloriamo le icone per tipo
