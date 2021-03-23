@@ -1,9 +1,6 @@
-// Milestone 1
-// Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
-// 
 // Milestone 2
 // Coloriamo le icone per tipo
-// 
+//
 // Milestone 3
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 
@@ -117,3 +114,26 @@ const icons = [
     category: "animal"
   },
 ];
+
+// Milestone 1
+// Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
+
+// 1. seleziono l'elemento dove iniettare nell'html
+const injectContainer = $(".icons");
+
+// 2. ciclo sull'array 'icons' e inietto in html
+icons.forEach((item, i) => {
+  // destrutturo gli elementi dell'array
+  let {name, family, prefix, category} = item;
+
+  // definisco codice da iniettare in html
+  let htmlInject = `
+  <div>
+    <i class="${family} ${prefix}${name}"></i>
+    <div class="title">${name}</div>
+  </div>
+  `;
+
+  // inietto
+  injectContainer.append(htmlInject);
+});
