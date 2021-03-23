@@ -165,6 +165,7 @@ iconCategories.forEach((item, i) => {
     return category == iconCategories[i];
   });
 
+
   // ciclo sui Colori
   iconColors.forEach((color, index) => {
     // controllo la corrispondenza in posizione tra colori e categorie
@@ -209,6 +210,65 @@ const select = $("#type");
 // ciclo sulle categorie e inietto le options in select
 iconCategories.forEach((item) => {
   let optionHtml = `<option value="${item}">${item}</option>`;
-  
+
   select.append(optionHtml);
+});
+
+// 2. aggiungo l'evento alla selezione della categoria nelle select
+select.change(function () {
+  for (var i = 0; i < iconCategories.length; i++) {
+    // controllo che il valore della option sia uguale a una delle categorie
+    if ($(this).val() == iconCategories[i] ) {
+
+      // filtro le icone in base alla categoria corrispondente al change
+      var iconsFiltered = icons.filter( (item) => {
+
+        // destrutturo gli elementi dell'array
+        let {name, family, prefix, category} = item;
+
+        return category == iconCategories[i];
+      });
+
+      // pulisco l'html di injectContainer
+      injectContainer.html("");
+
+      // inietto le icone della categoria corretta
+      iconsFiltered.forEach((item) => {
+
+        // destrutturo gli elementi dell'array
+        let {name, family, prefix, category, color} = item;
+
+        // definisco codice da iniettare in html
+        let htmlInject = `
+        <div>
+          <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+          <div class="title">${name}</div>
+        </div>
+        `;
+
+        injectContainer.append(htmlInject);
+      });
+
+    } else if ($(this).val() == "") {
+      // pulisco l'html di injectContainer
+      injectContainer.html("");
+
+      // inietto tutte le icone
+      icons.forEach((item) => {
+
+        // destrutturo gli elementi dell'array
+        let {name, family, prefix, category, color} = item;
+
+        // definisco codice da iniettare in html
+        let htmlInject = `
+        <div>
+          <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+          <div class="title">${name}</div>
+        </div>
+        `;
+
+        injectContainer.append(htmlInject);
+      });
+    }
+  }
 });
