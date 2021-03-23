@@ -167,5 +167,39 @@ iconCategories.forEach((item, i) => {
 
     return category == iconCategories[i];
   });
-  console.log(iconsFiltered);
+
+  // ciclo sui Colori
+  iconColors.forEach((color, index) => {
+    // controllo la corrispondenza in posizione tra colori e categorie
+    if (index == i) {
+      for (var j = 0; j < iconsFiltered.length; j++) {
+        iconsFiltered[j].color = iconColors[i];
+      }
+    }
+  });
+});
+
+console.log(icons);
+
+// 4. inietto in html
+// pulisco l'html di injectContainer
+injectContainer.html("");
+
+icons.forEach((item) => {
+
+  // destrutturo gli elementi dell'array
+  let {name, family, prefix, category, color} = item;
+
+  console.log(color);
+
+  // definisco codice da iniettare in html
+  let htmlInject = `
+  <div>
+    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+    <div class="title">${name}</div>
+  </div>
+  `;
+
+  // inietto
+  injectContainer.append(htmlInject);
 });
