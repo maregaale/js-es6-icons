@@ -155,4 +155,17 @@ icons.forEach((item, i) => {
   }
 });
 
-console.log(iconCategories);
+// 3. filtro attraverso le categorie
+// ciclo sulle categorie
+iconCategories.forEach((item, i) => {
+
+  // filtro le icone in base alle categorie
+  var iconsFiltered = icons.filter( (item) => {
+
+    // destrutturo gli elementi dell'array
+    let {name, family, prefix, category} = item;
+
+    return category == iconCategories[i];
+  });
+  console.log(iconsFiltered);
+});
