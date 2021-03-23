@@ -180,6 +180,7 @@ iconCategories.forEach((item, i) => {
 // pulisco l'html di injectContainer
 injectContainer.html("");
 
+// inietto
 icons.forEach((item) => {
 
   // destrutturo gli elementi dell'array
@@ -200,3 +201,14 @@ icons.forEach((item) => {
 
 // Milestone 3
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+
+// 1. creo la select con le otpions riferite alle categorie
+// seleziono la select in html
+const select = $("#type");
+
+// ciclo sulle categorie e inietto le options in select
+iconCategories.forEach((item) => {
+  let optionHtml = `<option value="${item}">${item}</option>`;
+  
+  select.append(optionHtml);
+});
