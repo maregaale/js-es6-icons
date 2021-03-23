@@ -1,6 +1,3 @@
-// Milestone 2
-// Coloriamo le icone per tipo
-//
 // Milestone 3
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 
@@ -115,6 +112,7 @@ const icons = [
   },
 ];
 
+
 // Milestone 1
 // Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
 
@@ -122,7 +120,7 @@ const icons = [
 const injectContainer = $(".icons");
 
 // 2. ciclo sull'array 'icons' e inietto in html
-icons.forEach((item, i) => {
+icons.forEach((item) => {
   // destrutturo gli elementi dell'array
   let {name, family, prefix, category} = item;
 
@@ -137,3 +135,24 @@ icons.forEach((item, i) => {
   // inietto
   injectContainer.append(htmlInject);
 });
+
+
+// Milestone 2
+// Coloriamo le icone per tipo
+
+// 1. aggiungo l'array dei Colori
+const iconColors = ["#00FFFF", "#CD853F", "#000080"];
+
+// 2. determino l'array delle categorie prese una volta sola
+// definisco l'array vuoto delle categorie
+let iconCategories = [];
+
+// ciclo sull'array icons
+icons.forEach((item, i) => {
+  // controllo che non venga presa più volte la stessa categoria
+  if (!(iconCategories.includes(item["category"]))) {
+    iconCategories.push(item["category"]);
+  }
+});
+
+console.log(iconCategories);
