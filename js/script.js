@@ -1,3 +1,26 @@
+// funzioni
+function injectIconInHtml(element) {
+  // pulisco l'html di injectContainer
+  injectContainer.html("");
+
+  // inietto tutte le icone
+  element.forEach((item) => {
+
+    // destrutturo gli elementi dell'array
+    let {name, family, prefix, category, color} = item;
+
+    // definisco codice da iniettare in html
+    let htmlInject = `
+    <div>
+      <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+      <div class="title">${name}</div>
+    </div>
+    `;
+
+    injectContainer.append(htmlInject);
+  });
+}
+
 const icons = [
   {
     name: 'apple-alt',
@@ -118,19 +141,9 @@ const injectContainer = $(".icons");
 
 // 2. ciclo sull'array 'icons' e inietto in html
 icons.forEach((item) => {
-  // destrutturo gli elementi dell'array
-  let {name, family, prefix, category} = item;
 
-  // definisco codice da iniettare in html
-  let htmlInject = `
-  <div>
-    <i class="${family} ${prefix}${name}"></i>
-    <div class="title">${name}</div>
-  </div>
-  `;
+  injectIconInHtml(icons);
 
-  // inietto
-  injectContainer.append(htmlInject);
 });
 
 
@@ -178,26 +191,7 @@ iconCategories.forEach((item, i) => {
 });
 
 // 4. inietto in html
-// pulisco l'html di injectContainer
-injectContainer.html("");
-
-// inietto
-icons.forEach((item) => {
-
-  // destrutturo gli elementi dell'array
-  let {name, family, prefix, category, color} = item;
-
-  // definisco codice da iniettare in html
-  let htmlInject = `
-  <div>
-    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-    <div class="title">${name}</div>
-  </div>
-  `;
-
-  // inietto
-  injectContainer.append(htmlInject);
-});
+injectIconInHtml(icons);
 
 
 // Milestone 3
@@ -229,46 +223,11 @@ select.change(function () {
         return category == iconCategories[i];
       });
 
-      // pulisco l'html di injectContainer
-      injectContainer.html("");
+      injectIconInHtml(iconsFiltered);
 
-      // inietto le icone della categoria corretta
-      iconsFiltered.forEach((item) => {
-
-        // destrutturo gli elementi dell'array
-        let {name, family, prefix, category, color} = item;
-
-        // definisco codice da iniettare in html
-        let htmlInject = `
-        <div>
-          <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-          <div class="title">${name}</div>
-        </div>
-        `;
-
-        injectContainer.append(htmlInject);
-      });
 
     } else if ($(this).val() == "") {
-      // pulisco l'html di injectContainer
-      injectContainer.html("");
-
-      // inietto tutte le icone
-      icons.forEach((item) => {
-
-        // destrutturo gli elementi dell'array
-        let {name, family, prefix, category, color} = item;
-
-        // definisco codice da iniettare in html
-        let htmlInject = `
-        <div>
-          <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-          <div class="title">${name}</div>
-        </div>
-        `;
-
-        injectContainer.append(htmlInject);
-      });
+      injectIconInHtml(icons);
     }
   }
 });
